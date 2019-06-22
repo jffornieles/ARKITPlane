@@ -9,6 +9,7 @@
 import Foundation
 import ARKit
 
+
 class Plane: SCNNode {
     
     override init() {
@@ -21,11 +22,14 @@ class Plane: SCNNode {
         
         let hoverUp = SCNAction.moveBy(x: 0, y: 0.2, z: 0, duration: 2.5)
         let hoverDown = SCNAction.moveBy(x: 0, y: -0.2, z: 0, duration: 2.5)
+        let rotate = SCNAction.rotateTo(x: 0, y: 0, z: .pi*2, duration: 1)
         let sequence = SCNAction.sequence([hoverUp, hoverDown])
-        let loop = SCNAction.repeatForever(sequence)
+        let group = SCNAction.group([sequence, rotate])
+        
+        let loop = SCNAction.repeatForever(group)
         self.runAction(loop)
         
-        self.come()
+        // self.come()
     }
     
     required init?(coder aDecoder: NSCoder) {
