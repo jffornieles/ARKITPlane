@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var sceneView: ARSCNView!
     
-    var plane: Plane!
+    var planes = [Plane]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +26,21 @@ class ViewController: UIViewController {
         startTracking()
         
         sceneView.session.delegate = self
-        sceneView.delegate = self
+        sceneView.scene.physicsWorld.contactDelegate = self
         
-        self.plane = Plane()
-        self.sceneView.scene.rootNode.addChildNode(self.plane)
+        addNewPlane()
         
-        sceneView.showsStatistics = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.shootBullet))
+        self.sceneView.addGestureRecognizer(tap)
+        
+        UIApplication.shared.isIdleTimerDisabled = true
 
+    }
+    
+    func addNewPlane() {
+        let plane = Plane()
+        self.planes.append(plane)
+        self.sceneView.scene.rootNode.addChildNode(plane)
     }
     
     private func startTracking() {
@@ -41,30 +49,17 @@ class ViewController: UIViewController {
         
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
+    
+    @objc func shootBullet() {
+        guard let camera = self.sceneView.session.currentFrame?.camera else { return }
+        let bullet = Bullet(camera)
+        self.sceneView.scene.rootNode.addChildNode(bullet)
+    }
 
 }
 
 extension ViewController: ARSCNViewDelegate {
-    
-//    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-//        guard let planeAnchor = anchor as? ARPlaneAnchor, let device = sceneView.device else {
-//            return
-//        }
-//
-//        let plane = Plane(anchor: planeAnchor, in: device)
-//
-//        node.addChildNode(plane)
-//    }
-    
-//    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-//        guard let planeAnchor = anchor as? ARPlaneAnchor, let plane = node.childNodes.first as? Plane else {
-//            return
-//        }
-//
-//        if let planeGeometry = plane.mesh.geometry as? ARSCNPlaneGeometry {
-//            planeGeometry.update(from: planeAnchor.geometry)
-//        }
-//    }
+
     
 }
 
@@ -80,8 +75,26 @@ extension ViewController: ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         guard let cameraOrientation = session.currentFrame?.camera.transform else { return }
-        self.plane.face(to: cameraOrientation)
+        self.planes.forEach { $0.face(to: cameraOrientation) }
     }
     
+}
+
+extension ViewController: SCNPhysicsContactDelegate {
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        let n1 = contact.nodeA
+        let n2 = contact.nodeB
+        
+        print("Collision")
+        
+        let plane: Plane = (n1 is Plane ? n1 : n2) as! Plane
+        
+        self.sceneView.scene.rootNode.childNodes.forEach { $0.removeFromParentNode() }
+        
+        Explosion.show(with: plane, in: self.sceneView.scene)
+        
+        self.addNewPlane()
+        
+    }
 }
 

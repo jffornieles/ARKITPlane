@@ -15,6 +15,13 @@
 		8785EA8222BE48EA00C70709 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8785EA8122BE48EA00C70709 /* Plane.swift */; };
 		8785EA8522BE4E1200C70709 /* Thunder_R.dae in Resources */ = {isa = PBXBuildFile; fileRef = 8785EA8322BE4E1200C70709 /* Thunder_R.dae */; };
 		8785EA8622BE4E1200C70709 /* Plane.scn in Resources */ = {isa = PBXBuildFile; fileRef = 8785EA8422BE4E1200C70709 /* Plane.scn */; };
+		8785EA8B22BE7F1100C70709 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8785EA8A22BE7F1100C70709 /* Bullet.swift */; };
+		8785EA8E22BE7FBD00C70709 /* Collision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8785EA8D22BE7FBD00C70709 /* Collision.swift */; };
+		8785EA9622BE8AC600C70709 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8785EA9422BE8AC600C70709 /* spark.png */; };
+		8785EA9922BE8B9900C70709 /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 8785EA9822BE8B9900C70709 /* Explosion.scnp */; };
+		87E2C78622BE8DEF0065B945 /* Explossion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E2C78522BE8DEF0065B945 /* Explossion.swift */; };
+		87E2C78922BE92D10065B945 /* ship.scn in Resources */ = {isa = PBXBuildFile; fileRef = 87E2C78722BE92D10065B945 /* ship.scn */; };
+		87E2C78A22BE92D10065B945 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E2C78822BE92D10065B945 /* texture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +35,13 @@
 		8785EA8122BE48EA00C70709 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		8785EA8322BE4E1200C70709 /* Thunder_R.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Thunder_R.dae; sourceTree = "<group>"; };
 		8785EA8422BE4E1200C70709 /* Plane.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Plane.scn; sourceTree = "<group>"; };
+		8785EA8A22BE7F1100C70709 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		8785EA8D22BE7FBD00C70709 /* Collision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collision.swift; sourceTree = "<group>"; };
+		8785EA9422BE8AC600C70709 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		8785EA9822BE8B9900C70709 /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
+		87E2C78522BE8DEF0065B945 /* Explossion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explossion.swift; sourceTree = "<group>"; };
+		87E2C78722BE92D10065B945 /* ship.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = ship.scn; sourceTree = "<group>"; };
+		87E2C78822BE92D10065B945 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,11 +88,42 @@
 		8785EA7622BE3B0200C70709 /* 3DModels */ = {
 			isa = PBXGroup;
 			children = (
+				8785EA8F22BE888300C70709 /* Explosion */,
+				8785EA8C22BE7FAB00C70709 /* Physics */,
+				8785EA8922BE7E7100C70709 /* Bullet */,
 				8785EA8422BE4E1200C70709 /* Plane.scn */,
+				87E2C78722BE92D10065B945 /* ship.scn */,
+				87E2C78822BE92D10065B945 /* texture.png */,
 				8785EA8322BE4E1200C70709 /* Thunder_R.dae */,
 				8785EA8122BE48EA00C70709 /* Plane.swift */,
 			);
 			path = 3DModels;
+			sourceTree = "<group>";
+		};
+		8785EA8922BE7E7100C70709 /* Bullet */ = {
+			isa = PBXGroup;
+			children = (
+				8785EA8A22BE7F1100C70709 /* Bullet.swift */,
+			);
+			path = Bullet;
+			sourceTree = "<group>";
+		};
+		8785EA8C22BE7FAB00C70709 /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				8785EA8D22BE7FBD00C70709 /* Collision.swift */,
+			);
+			path = Physics;
+			sourceTree = "<group>";
+		};
+		8785EA8F22BE888300C70709 /* Explosion */ = {
+			isa = PBXGroup;
+			children = (
+				8785EA9822BE8B9900C70709 /* Explosion.scnp */,
+				8785EA9422BE8AC600C70709 /* spark.png */,
+				87E2C78522BE8DEF0065B945 /* Explossion.swift */,
+			);
+			path = Explosion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,9 +185,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8785EA8622BE4E1200C70709 /* Plane.scn in Resources */,
+				8785EA9622BE8AC600C70709 /* spark.png in Resources */,
 				8785EA8522BE4E1200C70709 /* Thunder_R.dae in Resources */,
+				87E2C78A22BE92D10065B945 /* texture.png in Resources */,
 				8785EA6B22BE22B200C70709 /* LaunchScreen.storyboard in Resources */,
+				8785EA9922BE8B9900C70709 /* Explosion.scnp in Resources */,
 				8785EA6822BE22B200C70709 /* Assets.xcassets in Resources */,
+				87E2C78922BE92D10065B945 /* ship.scn in Resources */,
 				8785EA6622BE22B000C70709 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,9 +203,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8785EA8E22BE7FBD00C70709 /* Collision.swift in Sources */,
 				8785EA6322BE22B000C70709 /* ViewController.swift in Sources */,
 				8785EA8222BE48EA00C70709 /* Plane.swift in Sources */,
+				87E2C78622BE8DEF0065B945 /* Explossion.swift in Sources */,
 				8785EA6122BE22B000C70709 /* AppDelegate.swift in Sources */,
+				8785EA8B22BE7F1100C70709 /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
